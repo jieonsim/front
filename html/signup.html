@@ -1,0 +1,127 @@
+<html>
+<head>
+  <title> film exhibition </title>
+</head>
+<body>
+  <table border>
+    <table border = "0px" align = "center" width = "1000px">
+      <tr height = "200px">
+      <td width = "300px" align = "center">
+      <h1> A film photography exhibition</h1>
+      </td>
+      <td  align = "center" >
+        <a href = "home.html"> <b> Home </b></a>
+      </td>
+      <td align = "center">
+        <a href = "horizontal.html"> <b> Horizontal </b></a>
+      </td>
+      <td align = "center"> 
+        <a href = "vertical.html"> <b> Vertical </b></a>
+      </td>
+        <td align = "center">  
+        <a href = "signup.html"> <b> Sign up </b></a>
+      </td>
+      </tr>
+    </table>
+        <form name = "" method = "post" action = "atom.jsp">
+        <table border = "0px" align = "center" width = "1000px" cellpadding = "0px" cellspacing = "10px">
+          <tr>
+            <td rowspan = "4" align = "center">
+            <img src = "../../images/240405_homework/film_horizontal/13.JPG" width = "320px" height = "216px"/>
+            </td>
+            <th > 아이디</th>
+            <td align = "center">
+            <input type = "text" name = "id" id = "id" />
+            </td>
+          </tr>
+        <tr>
+          <th> 비밀번호</th>
+            <td align = "center">
+            <input type = "password" name = "pwd" id = "pwd" />
+          </td>
+        </tr>
+        <tr>
+          <th> 비밀번호 확인</th>
+            <td align = "center">
+            <input type = "password" name = "pwd" id = "pwd" />
+          </td>
+        </tr>
+        <tr>
+          <th> 이름</th>
+            <td align = "center">
+            <input type = "text" name = "name" id = "name" />
+          </td>
+        </tr>
+        <tr>
+        <td rowspan = "4" align = "center">
+          <img src = "../../images/240405_homework/film_horizontal/14.JPG" width = "320px" height = "216px"/>
+          </td>
+          <th> 생년월일</th>
+            <td align = "center">
+            <input type = "date" name = "birth" id = "birth" />
+          </td>
+        </tr> 
+        <tr>
+          <th> 이메일</th>
+            <td align = "center">
+            <input type = "email" name = "email" id = "email" />
+          </td>
+        </tr>
+        <tr>
+          <th> 휴대전화번호</th>
+            <td align = "center">
+            <input type = "tel" name = "tel" id = "tel" />
+          </td>
+        </tr>
+        <tr>
+          <th> 성별</th>
+            <td align = "center">
+            <input type = "radio" name = "gender" id = "female" />여자
+            <input type = "radio" name = "gender" id = "male" />남자            
+          </td>
+        </tr>
+        <tr>
+        <td rowspan = "4" align = "center">
+          <img src = "../../images/240405_homework/film_horizontal/15.JPG" width = "320px" height = "216px"/>
+          </td>
+          <th> 알게된 경로</th>
+          <td align = "center">
+            <input type = "checkbox" name = "path" id = "path1"/>SNS
+            <input type = "checkbox" name = "path" id = "path2"/>포털사이트 검색
+            <input type = "checkbox" name = "path" id = "path3"/>지인 소개
+            <input type = "checkbox" name = "path" id = "path4"/>기타
+          </td>
+        </tr>
+        <tr>
+          <th>선호하는 필름</th>
+          <td align = "center">
+            <select name = "film" id ="film" size = "5" multiple>
+              <option> 코닥 프로이미지100</option>
+              <option> 코닥 골드200</option>
+              <option> 코닥 울트라맥스400</option>
+              <option> 코닥 포트라160</option>
+              <option> 코닥 엑타100</option>
+              <option> 후지 후지컬러200</option>
+              <option> 후지 엑스트라400</option>
+              <option> 후지 프로비아100F</option>
+              <option> 씨네스틸800T</option>
+          </td>
+        </tr>
+        <tr>
+        <th>자기소개</th>
+        <td align = "center"><textarea rows = "2" cols = "30" name = "content" id = "content"></textarea></td>
+        </tr>
+        <tr>
+        <th>프로필 사진</th>
+        <td align = "center"><input type = "file" name = "file" id = "file"/></td>
+        </tr>
+        <tr height = "80px">
+        <td colspan = "3" align = "center">
+          <button type = "submit">회원가입</button> &nbsp;&nbsp;&nbsp;
+          <button type = "reset">다시입력</button>
+        </td>
+        </tr>
+        </table>
+        </form>
+</body>
+</html>
