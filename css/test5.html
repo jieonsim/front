@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test5.html</title>
+
+    <style type = "text/css" rel = "stylesheet">
+    p {
+        font-size: 20pt;
+        color: rgba(0, 0, 0, 1);
+    }
+    #sample {
+        font-family: "돋음체", "궁서체", "명조체";
+        /* 첫번째 폰트가 없으면 두번째 폰트 적용, 두번째 폰트도 없으면 세번째 폰트가 적용된다 */
+        font-weight: bolder;
+    }
+    #title { font-variant: small-caps;}
+    </style>
+    <!--type과 rel은 생략 가능-->
+    <!--rgba의 a는 불투명도-->
+</head>
+<body background="../../images/1.jpg">
+    <h2>외부 스타일시트(External Style)</h2>
+    <p>1안녕하세요</p>
+    <p>2안녕하세요</p>
+    2-1. 반갑습니다.<br/>
+    <p>3안녕하세요</p>
+    3-1. 반갑습니다.<br/>
+    <p>4안녕하세요</p>
+    4-1. 반갑습니다.<br/>
+    <p id = "sample">5안녕하세요</p>
+    <p id = "title"> Welcome to Korea!!!</p>
+</body>
+</html>

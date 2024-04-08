@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test6.html</title>
+
+    <style type = "text/css" rel = "stylesheet">
+        p {
+            font-size: 20pt;
+            color: rgb(0, 0, 0);
+        }
+        .atom {color: rgba(111, 0, 255, 0.432);}
+        #mbc {color : yellow}
+        .kbs {background-color: cyan;}
+    </style>
+    <!--type과 rel은 생략 가능-->
+    <!--rgba의 a는 불투명도-->
+    <!--id는 무조건 하나만 나와야함, id를 여러번 쓰고싶다면 클래스써야함-->
+</head>
+<body bgcolor="#eee">
+    <h2>외부 스타일시트(External Style)</h2>
+    <p>1.<span class = "kbs">안녕</span>하세요</p>
+    <p>2<span class = "atom">안녕</span>하세요</p>
+    2-1. 반갑습니다.<br/>
+    <p>3안녕하세요</p>
+    3-1. <div>반갑</div>습니다.<br/>
+    <!--블록 구조 변경 : div-->
+    <p class = "atom">4안녕하세요</p>
+    <div class = "kbs">4-1. 반갑습니다.</div>
+    <p>5안녕하세요</p>
+    5-1. 반갑습니다.<br/>
+    <p>5안녕하세요</p>
+    5-1. 반갑습니다.<br/>
+    <p>6안녕하세요</p>
+    <div id = "mbc">6-1. 반갑습니다.</div>
+    <p>7안녕하세요</p>
+    7-1. 반갑습니다.<br/>
+    <p>8안녕하세요</p>
+    <div id = "mbc">8-1. 반갑습니다.</div>
+</body>
+</html>
