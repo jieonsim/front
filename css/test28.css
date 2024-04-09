@@ -1,0 +1,64 @@
+body{
+    margin: 0px;
+    font-size: 0.8em;
+}
+.container {
+    background-color: beige;
+    height: 100vh;
+    /* 상속 받은 것과 동일하게 여백남은것까지 싹 다 꽉채운다 */
+    display: flex;
+    
+    /* flex-direction: row; */
+    /* 기본 방향이 행기준이라 flex-direction: row 안써도 됨 */
+
+    /* flex-direction: column; */
+    /* column으로 바꾸면 열 기준으로 배열됨 */
+
+    /* flex-direction: row-reverse; */
+    /* 기본 행 기준에서 역 방향으로 배열 */
+
+    /* flex-wrap: wrap; */
+    /* 화면 줄였을 때 밑으로 떨어지도록 */
+    /* flex-wrap: wrap-reverse; */
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    justify-content: space-evenly;
+
+    /* align-items: center; */
+    align-items: baseline;
+
+    align-content: space-around;
+    /* align-content: space-between; */
+}
+
+.item {
+    width: 70px;
+    height: 70px;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.item:nth-child(1) {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    /* 높이만큼은 line-height도 똑같이 주면 텍스트가 중앙에 옴 */
+}
+
+.item1 {background-color: burlywood;}
+.item2 {background-color: coral;}
+.item3 {background-color: blueviolet;}
+.item4 {background-color: steelblue;}
+.item5 {background-color: palevioletred;}
+.item6 {background-color: chartreuse;}
+.item7 {background-color: crimson;}
+.item8 {background-color: darkblue;}
+.item9 {background-color: thistle;}
+.item10 {background-color: turquoise;}
