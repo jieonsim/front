@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular';
+}
+li {
+    margin-left: 7px;
+    margin-bottom: 20px;
+    padding: 5px;
+    list-style: none;    
+}
+.container {
+    display: grid;
+    grid-template-areas: 
+    'aside header'
+    'aside content'
+    'aside footer';
+    grid-template-rows: 70px 1fr 70px;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+}
+.item {
+    padding: 20px;
+    color: #fff;
+}
+.header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+    background-color: #fff;
+    color: #333333;
+    padding: 1%;
+    border-bottom: 2px solid #dddbdb;
+}
+.aside {
+    grid-area: aside;
+    width: 180px;
+    height: 100vh;
+    background-color: rgb(240, 240, 240);
+    overflow-y: auto;
+    color: #222222;
+    position: fixed;
+    border-right: 2px solid #dddbdb;
+    top: 0;
+}
+.content {
+    grid-area: content;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow-y: auto;
+    color: #000000;
+}
+.footer {
+    grid-area: footer;
+    background-color: rgb(250, 250, 250);
+    color: #666666;
+}
+button {
+    background-color: crimson;
+    color: white;
+    padding: 1%;
+    border: 0;
+    cursor: pointer;
+}
+.button {
+    text-align: center;
+}
+#logo {
+    font-size: xx-large;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+#mainNav a {
+    display: block;
+    color: #222222;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin-bottom: 5%;
+}
+#mainNav {
+    text-align: left;
+}
+#mainNav p {
+    color: #666666;
+}
+#content {
+    text-align: center;
+}
+#quote {
+    color: #666666;
+    font-size: small;
+}
+#footer {
+    margin-left: 20px;
+}
+#logout {
+    justify-content: right;
+    margin-left: 90%;
+}
+#mainNav a:hover {
+    opacity: 0.5;
+}
