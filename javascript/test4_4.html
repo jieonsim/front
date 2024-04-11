@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test4_4</title>
+    <script>
+        'use strict';
+
+        function atom1() {
+            // document.write("atom1 함수 : 안녕2<br/>")
+            alert("atom1 함수 : 안녕2");
+        }
+
+        // 변수 타입 상관없어서 타입 안써도 됨
+        // 메소드는 메모리 영역에 미리 올라가기 때문에
+        // use strict를 써놔도 메소드에서는 변수 타입 쓰지 않아도 됨
+        function atom4(su) {
+            alert("su : " + su)
+        }
+        function atom5(su, str) {
+            alert("atom5 함수 -> \n\n su : " + su + ", str : " + str)
+            // \n : 줄바꿈
+        }
+        function atom6() {
+            // use strict 를 선언해놨기 때문에 아래와 같이는 불가
+            // su = 2000;
+            // str = "반갑습니다.";
+
+            let su = 2000;
+            let str = "반갑습니다.";
+            alert("atom6 함수 -> \n su : " + su + ", str : " + str)
+            atom5(su,str);
+        }
+
+    </script>
+</head>
+<body>
+    <h2>이 곳은 본문</h2>
+
+    <input type = "button" value = "atom1" onclick="atom1()"/> 
+    <!-- 아톰1 버튼을 클릭하면 아톰1() 메소드를 불러와달라는 클릭이벤트 설정 -->
+    <!-- <input type = "button" value = "atom2" onclick="atom2()"/>  -->
+    <button type = "button" onclick="atom2()">atom2호출</button>
+    <button type = "button" onclick="atom3()">atom3호출</button>
+    <button type = "button" onclick="atom4(500)">atom4호출</button>
+    <button type = "button" onclick="atom5(500, '안녕')">atom5호출</button>
+    <button type = "button" onclick="atom6()">atom6호출</button>
+
+
+    <script>
+        function atom2() {
+            // document.write("atom2 함수 : 안녕3<br/>")
+            alert("atom2 함수 : 안녕3")
+        }
+        function atom3() {
+            atom1();
+            atom2();
+            alert("작업 종료");
+        }
+
+    </script>
+</body>
+</html>

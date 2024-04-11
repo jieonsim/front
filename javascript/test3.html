@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // 무조건 변수 선언 후 사용해라 : use strict
+        'use strict';
+
+        var aa = 100;
+        console.log("1. aa : ", aa);
+        var aa =  3.14;
+        console.log("2. aa : ", aa);
+        aa =  "korea";
+        console.log("3. aa : ", aa);
+        // var은 같은 변수 선언 계속 가능, let은 불가
+        
+        let bb = 200;
+        console.log("1. bb : ", bb);
+        bb = 3.145195;
+        console.log("2. bb : ", bb);
+        bb = "seoul";
+        console.log("3.bb : ", bb)
+
+        // const : 한번 선언 후 값을 변경할 수 없다
+        const cc = 300;
+        console.log("1. cc : ", cc);
+        /* 불가한 내용
+        cc = 3.14;
+        console.log("2. cc : ", cc);
+        */
+
+        // use strict 선언 후 아래와 같이 변수 없이 사용한다면 에러남
+        /*
+        dd = 400;
+        console.log("dd : ", dd);
+        */
+        </script>
+    <title>test3</title>
+</head>
+<body>
+    <h2>본문입니다.</h2>
+</body>
+</html>

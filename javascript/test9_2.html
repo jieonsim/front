@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test9_2</title>
+    <script>
+        'use strict';
+
+        function calc() {
+            let su = prompt("수를 입력하세요.")
+            // let res = su + 100;
+            // let res = parseInt(su) + 100;
+            // let res = Number(su) + 100;
+            // 입력 창에 들어오는 숫자는 모두 문자로 읽혀서
+            // 연산이 안되기 때문에 원하는 타입(parseint 혹은 number 혹은 eval)으로 바꿔야함
+            let res = eval(su) + 100;
+            alert("res : " + res);
+        }
+        
+    </script>
+</head>
+<body>
+    <h2>본문</h2>
+    <p>
+        <input type = "button" value = "계산" onclick="calc()"/>
+    </p>
+</body>
+</html>
