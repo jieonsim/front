@@ -21,18 +21,27 @@
                 startDan = endDan;
                 endDan = temp;
             }
-            let str = "";
-            let res;
+            let str = "* 구구단 *<br/>";
 
-            str += "* 구구단 *<br/>";
-            for(let i = 1; i <= 9; i++) {
-                for (let j = 1; j <= i; j++) {
-                    res = startDan * i;
-                    str += startDan + ' * ' + i + " = " + res + "<br/>";
-                    str += startDan + ' * ' + i + " = " + res + "<br/>";
+            for(let dan = startDan; dan <= endDan; dan++) {
+                str += `<strong>${dan}단</strong><br/>`;
+                for(let i = 1; i <= 9; i++) {
+                    let res = dan * i;
+                    str += `${dan} * ${i} = ${res}<br/>`;
                 }
+                str += '<br/>';
             }
-            demo.innerHTML = str;
+            document.getElementById("demo").innerHTML = str;
+
+            // for(let i = 1; i <= 9; i++) {
+            //     str += '<strong>${s}'
+            //     for (let j = 1; j <= i; j++) {
+            //         res = startDan * i;
+            //         str += startDan + ' * ' + i + " = " + res + "<br/>";
+            //         str += startDan + ' * ' + i + " = " + res + "<br/>";
+            //     }
+            // }
+            // demo.innerHTML = str;
         }
 
         // const resetCheck = () => document.getElementById("su").value = 1;

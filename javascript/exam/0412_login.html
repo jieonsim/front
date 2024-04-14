@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Game</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="0412_login.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+
+    <script>
+        'use strict';
+
+        function login() {
+            var id = document.getElementById('id').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.textContent = '';
+
+            if(id.trim() === '') {
+                errorMessage.textContent = '아이디를 입력해 주세요.';
+                return;
+            }
+
+            if(password.trim() === '') {
+                errorMessage.textContent = '비밀번호를 입력해 주세요.';
+                return;
+            }
+
+            if(id.includes(' ') || password.includes(' ')) {
+                errorMessage.textContent = '공백은 허용되지 않습니다. 다시 입력해 주세요.';
+                return;
+            }
+
+            if(id.length < 4) {
+                errorMessage.textContent = '아이디는 최소 4자 이상입니다.';
+                return;
+            }
+
+            if(password.length < 8) {
+                errorMessage.textContent = '비밀번호는 최소 8자 이상입니다.';
+                return;
+            }
+
+            if(id === 'admin' && password === 'asdf123^^') {
+                location.href = '0412_main.html';
+            } else {
+                errorMessage.textContent = '아이디 또는 비밀번호를 잘못 입력했습니다. \n입력하신 내용을 다시 확인해 주세요.';
+                return;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class = "container">
+        <h1 class = "text-center" id = "GreenGame">Green Game</h1>
+        <div class = "form-group">
+            <input type = "text" name = "id" id = "id" placeholder = "아이디" minlength="5" class = "form-control" autofocus required>
+        </div>
+        <div class = "form-group">
+            <input type = "password" name = "password" id = "password" placeholder="비밀번호" minlength="8" class = "form-control" required>
+        </div>
+        <div class = "form-group">
+            <div id = "errorMessage"></div>
+            <input type = "button" name = "login" id = "login" value = "로그인" onclick="login()"  class = "btn btn-success form-control">
+        </div>
+        <div class = "row justify-content-center">
+            <div class = "col-4">
+                <input type = "button" name = "findToId" id = "findToId" value = "비밀번호 찾기" class = "btn form-control"> 
+            </div>
+            <div class = "col-4">
+                <input type = "button" name = "findToPassword" id = "findToPassword" value = "아이디 찾기" class = "btn form-control"> 
+            </div>
+            <div class = "col-4">
+                <input type = "button" name = "signUp" id = "signUp" value = "회원가입" class = "btn form-control"> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
