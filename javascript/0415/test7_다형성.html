@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test7(다형성)</title>
+    <script>
+        'use strict';
+
+        class Shape {
+            constructor(width, height) {
+                this.width = width;
+                this.height = height; 
+            }
+            // 사각형 면적
+            getArea() {
+                return this.width * this.height;
+            }
+        }
+        let shape = new Shape(10, 20);
+        console.log("shape : ", shape);
+        console.log("사각형 면적 : ", shape.getArea());
+        console.log('');
+
+        // 자식 객체
+        class ChildShape extends Shape {}
+        
+        let childShape = new ChildShape(30, 40);
+        console.log("childShape : ", childShape);
+        console.log("ChildShape 사각형의 면적 : ", childShape.getArea());
+
+        // 오버라이드
+        class ChildShape2 extends Shape {
+            // 원 면적(폭(width)을 반지름(r)으로 처리한다.)
+            getArea() {
+                return this.width * this.width * 3.14;
+            }
+        }
+        let childShape2 = new ChildShape2(10, 20);
+        console.log("childShape2의 원 넓이 : ", childShape2.getArea());
+
+    </script>
+</head>
+<body>
+    <h2>다형성(오버라이드)</h2>
+</body>
+</html>

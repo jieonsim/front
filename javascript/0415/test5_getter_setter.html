@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test5(getters/setters)</title>
+    <script>
+        'use strict';
+
+        class Member {
+            // 필드명은 생략 가능
+            // name;
+            // age;
+
+            // 생성자
+            constructor(name, age, job) {
+                this.name = name;
+                this.age = age;
+                this.job = job;
+            }
+
+            // 필드값의 읽기(getter) / 쓰기(setter)
+            get name() {
+                return this._name;
+            }
+
+            get age() {
+                return this._age - 1;
+                // 만나이로 읽어들이고 싶을 경우 this._age에서 1를 뺀다
+            }
+
+            get job() {
+                return this._job;
+            }
+
+            set name(name) {
+                this._name = name;
+            }
+
+            set age(age) {
+                // this._age = age;
+                if(age < 1) age = 1;
+                this._age = age;
+            }
+
+            set job(job) {
+                if(job === '초등학생' || job === '중학생' || job === '고등학생' || job === '대학생') job = '학생';
+                // 값이 초등학생, 중학생, 고등학생, 대학생으로 들어오더라도 모두 학생으로 치겠다는 유효성 검사
+                this._job = job;
+            }
+        }
+        
+        let member = new Member('홍길동', 25, '고등학생'); 
+        console.log("member : ", member);
+        // 생성자 통해 바로 읽어낸 것
+        console.log("name : ", member.name, ", age : ", member.age, ", job : ", member.job);
+        // getter통해 읽어낸 값
+
+
+        </script>
+</head>
+<body>
+    <h2>
+        Getters / Setters
+    </h2>
+</body>
+</html>

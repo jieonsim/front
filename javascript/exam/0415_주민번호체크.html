@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주민등록번호 체크</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        'use strict';
+
+        function juminCheck() {
+            let jumin = document.getElementById("jumin1").value.trim() + document.getElementById("jumin2").value.trim();
+            // 주민등록번호가 13자리가 아니거나 숫자가 아니면
+            if(jumin.length != 13 || isNaN(jumin)) {
+                alert("주민번호를 확인해 주세요.(13자리 숫자만 입력할 수 있습니다.)")
+                document.getElementById("jumin1").value = "";
+                // document.getElementById("jumin2").value = "";
+                document.getElementById("jumin2").focus();
+                document.getElementById("jumin2").select();
+                return false;
+                // 자바스크립트에서 if 확인 후 수행할 것이 없다면 바로 return false로 끊자
+            }
+
+            let str = '';
+            const check = [2,3,4,5,6,7,8,9,2,3,4,5];
+            let hap = 0;
+
+            for(let i = 0; i < check.length; i++) {
+                hap += check[i]  * jumin.charAt(i);
+                // 234567892345 하나씩과 주민번호 하나씩 꺼내어 곱한 후 누적
+            }
+
+            let na = hap % 11;
+            let checkDigit = 11 - na;
+            if(checkDigit > 9) checkDigit = checkDigit % 10;
+
+            str += '<font color="red"><b>';
+            if(checkDigit == jumin.substring(jumin.length - 1)) {
+                str += '정상적인 주민등록번호입니다.';
+            } else {
+                str += '정상적인 주민등록번호가 아닙니다. 다시 확인해주세요.';
+            }
+            str += '</b></font>';
+
+            document.getElementById("demo").innerHTML = str;
+        }
+
+        // 주민등록번호 앞자리 6자리가 모두 입력되었을 때 뒷자리 입력 칸으로 focus되는 함수
+        function jumin1Check() {
+            let jumin1 = document.getElementById("jumin1").value.trim();
+            if(jumin1.length == 6) document.getElementById("jumin2").focus();
+        }
+
+        // 뒷자리 6자리까지 모두 입력 후 키보드 엔터 눌렀을 때 juminCheck() 함수 활성화(체크버튼 엔터키 처리)
+        function jumin2Check() {
+            // 자바에서 엔터키가 13
+            if(window.event.keyCode == 13) juminCheck();
+        }
+    </script>
+</head>
+<body>
+    <p><br/></p>
+    <div class="container">
+        <h2 class="mb-3">주민번호 체크</h2>
+        <form>
+            <p>주민번호
+                <input type = "text" name = "jumin1" id="jumin1" onkeyup="jumin1Check()"  maxlength="6" autofocus/>
+                <input type = "password" name = "jumin2" id="jumin2" onkeydown="jumin2Check()" maxlength="7"/>
+            </p>
+            <p>
+                <input type = "button" value="주민등록번호 체크" onclick="juminCheck()" class="btn btn-success m-3"/>
+            </p>
+        </form>
+        <hr/>
+        <div id="demo"></div>
+    </div>
+</body>
+</html>
