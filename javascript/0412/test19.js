@@ -18,9 +18,9 @@ function regexCheck() {
 
     const regex21 = /\./g; // 점을 포함하고 있느냐? 무조건 역슬래시 넣어야함
     const regex22 = /\d/g; // 숫자를 포함하고 있느냐? 
-    const regex23 = /\D/g; // 숫자만 포함? 대문자=꺽새(^) 와 동일
+    const regex23 = /\D/g; // 숫자를 포함하고 있지 않느냐?
     const regex24 = /\w/g; // 영문자, 숫자, 밑줄을 포함하고 있느냐?
-    const regex25 = /\W/g; // 영문자, 숫자, 밑줄만 포함하고 있느냐?
+    const regex25 = /\W/g; // 영문자, 숫자, 밑줄을 제외한 것을 포함하고 있느냐?
     const regex26 = /\s/g; // 공백(탭 포함)을 포함하고 있느냐? ???????
     
     let content = document.getElementById("content").value.trim();
