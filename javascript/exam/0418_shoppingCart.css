@@ -1,0 +1,69 @@
+body {
+    font-family: Noto Sans KR;
+}
+
+h2 {
+    text-align: center;
+}
+
+.navbar-custom {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    color: #001950;
+    font-family: "Alfa Slab One", serif;
+}
+
+.nav-link {
+    color: #001950;
+}
+
+.form-control {
+    border: 1px solid #001950;
+    border-radius: 20px;
+    padding-right: 2.5rem;
+}
+
+.btn-outline-custom {
+    border: none;
+}
+
+.position-absolute.end-0 {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1rem;
+}
+
+.btn.position-absolute.end-0 {
+    z-index: 2;
+}
+
+.btn-outline-custom:not(:last-child) {
+    margin-right: .5rem;
+}
+
+.fa-heart, .fa-cart-shopping, .fa-user {
+    margin: 0 10px;
+}
+
+
+.btn-dark {
+    padding: .6rem 1rem;
+    font-size: large;
+}
+
+#demoCartTotalAmount {
+    text-align: right;
+}
+
+.footer {
+    font-size: x-small;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+}

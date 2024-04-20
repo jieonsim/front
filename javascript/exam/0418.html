@@ -1,0 +1,68 @@
+<script>
+    // 장바구니 담기
+    let TotalAmount = 0;
+
+    function cartSend() {
+        if (!blankCheck()) {
+            return;
+        }
+
+        let productName = document.getElementById('product').options[document.getElementById('product').selectedIndex].text;
+        let size = document.getElementById('price').options[document.getElementById('price').selectedIndex].text;
+        let quantity = parseInt(document.getElementById('ea').value, 10);
+        let price = parseInt(document.getElementById('price').value, 10);
+        let totalPrice = price * quantity;
+
+        let cartHTML = `
+            <div class="row mb-3 align-items-center" data-price="${totalPrice}">
+                <div class="col-1">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="col-3">
+                    <span style="font-weight: bold;">${productName}</span><br>
+                    <span style="color: grey;">${size}</span>
+                </div>
+                <div class="col-3">
+                    ${quantity} 개
+                </div>
+                <div class="col-3">
+                    ${numberWithCommas(totalPrice)}원
+                </div>
+                <div class="col-2 text-right">
+                    <button onclick="removeCartItem(this)" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        let demoCart = document.getElementById('demoCart');
+        demoCart.innerHTML += cartHTML;
+        TotalAmount += totalPrice;
+
+        document.getElementById('demoCartTotalAmount').innerHTML = `
+            결제 예정 금액 : 
+            <span style="font-weight: bold; font-size: x-large;">${numberWithCommas(TotalAmount)}</span>원
+        `;
+        document.getElementById('shoppingCartContainer').style.display = 'block';
+    }
+
+    // 장바구니 내 상품 개별 삭제
+    function removeCartItem(button) {
+        let cartItem = button.closest('.row');
+        let itemPrice = parseInt(cartItem.getAttribute('data-price'), 10);
+
+        TotalAmount -= itemPrice;
+
+        document.getElementById('demoCartTotalAmount').innerHTML = `
+            결제 예정 금액 : 
+            <span style="font-weight: bold; font-size: x-large;">${numberWithCommas(TotalAmount)}</span>원
+        `;
+
+        cartItem.remove();
+
+        if (document.getElementById('demoCart').innerHTML.trim() === '') {
+            document.getElementById('shoppingCartContainer').style.display = 'none';
+        }
+    }
+</script>
