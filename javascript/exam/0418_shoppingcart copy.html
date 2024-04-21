@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN BEACH</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="0418_shoppingCart.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        'use strict';
+
+        // 선택 여부 확인
+        function blankCheck() {
+            let price = myform.price.value;
+            if(price == "") {
+                alert('사이즈를 선택하세요.');
+                return false;
+            }
+            if(price == 0) {
+                alert('상품을 선택하세요.');
+                return false;
+            }
+            return true;
+        }
+
+        // 가격 계산(개별 가격 + 수량)
+        function priceCalc() {
+            if(blankCheck()) {
+                let price = myform.price.value * myform.ea.value;
+                demo1.innerHTML = numberWithCommas(price) + "원";
+            }
+        }
+
+        // VAT 계산(총 가격의 10%)
+        function vatCalc() {
+            if(blankCheck()) {
+                let price = myform.price.value * myform.ea.value;
+                let vat = price * 0.1;
+                demo2.innerHTML = numberWithCommas(vat) + "원";
+            }
+        }
+        
+        // 총 가격 계산 (VAT 포함)
+        function totalCalc() {
+            if(blankCheck()) {
+                let price = myform.price.value * myform.ea.value;
+                let vat = price * 0.1;
+                let totalPrice = price + vat;
+                demo3.innerHTML = numberWithCommas(totalPrice) + "원";        
+            }
+        }
+
+        // 상품명 onchange
+        function productChoice() {
+            let product = document.getElementById('product').value;
+
+            let productArr = ['수영복', '튜브', '보트', '물안경', '오리발'];
+            let productTextArr = new Array();
+            let productValueArr = new Array();
+
+            // 수영복
+            if(product == productArr[0]) {
+                productTextArr = ['S', 'M', 'L', 'XL', 'XXL'];
+                productValueArr = [5000, 10000, 15000, 20000, 25000];
+            }
+            // 튜브
+            else if(product == productArr[1]) {
+                productTextArr = ['65cm', '85cm', '105cm'];
+                productValueArr = [10000, 15000, 20000];
+            }
+            // 보트
+            else if(product == productArr[2]) {
+                productTextArr = ['소형', '중형', '대형', '초대형'];
+                productValueArr = [5000, 10000, 15000, 20000];
+            }
+            // 물안경
+            else if(product == productArr[3]) {
+                productTextArr = ['아동용', '청소년용', '성인용'];
+                productValueArr = [5000, 10000, 15000];
+            }
+            // 오리발
+            else if(product == productArr[4]) {
+                productTextArr = ['작은발', '중간발', '큰발', '왕발'];
+                productValueArr = [15000, 20000, 25000, 30000];
+            }
+
+            let str = '<option value="">사이즈</option>';
+            for(let i = 0; i < productTextArr.length; i++) {
+                str += `<option value="${productValueArr[i]}">${productTextArr[i]}</option>`;
+            }
+            document.getElementById('price').innerHTML = str;
+        }
+
+        // 장바구니 담기
+        let totalAmount = 0;
+
+        function cartSend() {
+            if (!blankCheck()) {
+                return;
+            }
+
+            let productName = document.getElementById('product').options[document.getElementById('product').selectedIndex].text;
+            let size = document.getElementById('price').options[document.getElementById('price').selectedIndex].text;
+            let quantity = Number(document.getElementById('ea').value);
+            let price = Number(document.getElementById('price').value);
+            let totalPrice = price * quantity;
+
+            let cartHTML = `
+                <div class="row mb-3 align-items-center" data-price="${totalPrice}">
+                    <div class="col-2">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="col-2">
+                        ${productName}
+                    </div>
+                    <div class="col-2">
+                        ${size}
+                    </div>
+                    <div class="col-2">
+                        ${quantity} 개
+                    </div>
+                    <div class="col-2">
+                        ${numberWithCommas(totalPrice)}원
+                    </div>
+                    <div class="col-2 text-right">
+                        <button onclick="removeCartItem(this)" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            let demoCart = document.getElementById('demoCart');
+            demoCart.innerHTML += cartHTML;
+            totalAmount += totalPrice;
+
+            document.getElementById('demoCartTotalAmount').innerHTML = `
+                결제 예정 금액 : 
+                <span style="font-weight: bold; font-size: x-large; color: red;">${numberWithCommas(totalAmount)}</span>원
+            `;
+            document.getElementById('shoppingCartContainer').style.display = 'block';
+        }
+
+        // 장바구니 내 상품 개별 삭제
+        function removeCartItem(button) {
+            let cartItem = button.closest('.row');
+            let itemPrice = Number(cartItem.getAttribute('data-price'));
+
+            totalAmount -= itemPrice;
+
+            document.getElementById('demoCartTotalAmount').innerHTML = `
+                결제 예정 금액 : 
+                <span style="font-weight: bold; font-size: x-large; color: red;">${numberWithCommas(totalAmount)}</span>원
+            `;
+
+            cartItem.remove();
+
+            if (document.getElementById('demoCart').innerHTML.trim() === '') {
+                document.getElementById('shoppingCartContainer').style.display = 'none';
+            }
+        }
+
+        // 콤마 변환 함수
+        function numberWithCommas(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid mt-3">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <a class="navbar-brand" href="#">GREEN BEACH</a>
+                    <form class="d-flex align-items-center position-relative">
+                        <input class="form-control me-2" type="search" placeholder="검색어를 입력해주세요." aria-label="Search">
+                        <button class="btn position-absolute end-0 me-3" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                    <div>
+                        <button class="btn btn-outline-custom" type="button"><i class="fa-solid fa-heart"></i></button>
+                        <button class="btn btn-outline-custom" type="button"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <button class="btn btn-outline-custom" type="button"><i class="fa-solid fa-user"></i></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid mt-1">
+                <div class="container d-flex justify-content-center">
+                    <ul class="navbar-nav flex-grow-1 justify-content-around">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">카테고리</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">신상품</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">베스트</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">특가/혜택</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>      
+    </header>
+    <div class="container mt-5">
+        <form name="myform">
+            <h2>상품 선택</h2>
+            <br/>
+            <div class="border p-2 mb-3">
+                <div class="form-group p-2">
+                    <label for="product">상품명</label>
+                    <select name="product" id="product" onchange="productChoice()" class="form-control">
+                        <option selected>상품 선택</option>
+                        <option>수영복</option>
+                        <option>튜브</option>
+                        <option>보트</option>
+                        <option>물안경</option>
+                        <option>오리발</option>
+                    </select>
+                </div>
+                <div class="form-group p-2">
+                    <lable for="price">사이즈</lable>
+                    <select name="price" id="price" class="form-control">
+                        <option value="0" selected>사이즈 선택</option>
+                    </select>
+                </div>
+                <div class="form-group p-2">
+                    <label for="ea">수량</label>
+                    <input type="number" name="ea" id="ea" value="1" min="1" class="form-control"/>
+                </div>
+            </div>
+            <div class="row p-2 justify-content-center">
+                <input type="button" value="가격" onclick="priceCalc()" class="btn btn-secondary col-2 m-1"/>
+                <input type="button" value="부가세" onclick="vatCalc()" class="btn btn-secondary col-2 m-1"/>
+                <input type="button" value="총 금액" onclick="totalCalc()" class="btn btn-secondary col-2 m-1"/>
+            </div>
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="row mb-2">
+                            <div class="col-6 text-right">가격 : </div>
+                            <div class="col-6" id="demo1"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6 text-right"">부가세 : </div>
+                            <div class="col-6" id="demo2"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6 text-right">총 금액 : </div>
+                            <div class="col-6" id="demo3"></div>
+                        </div>                        
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex flex-column">
+                            <input type="button" value="장바구니 담기" onclick="cartSend()" class="btn btn-dark mb-2"/>
+                            <input type="button" value="장바구니 비우기" onclick="location.reload()" class="btn btn-outline-dark"/>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            <br/>
+        </form>
+    </div>
+    <div class="container mt-5" id="shoppingCartContainer" style="display: none;">
+        <form class="myform2">
+            <hr/>
+            <br/>
+            <h2>장바구니</h2>
+            <br/>
+            <div id="demoCart"></div>
+            <div id="demoCartTotalAmount" class="pb-5"></div>
+        </form>
+    </div>
+    <div class="container-fluid item footer">
+        <footer id = "footer">
+            <address>Copyright ⓒGREEN BEACH. All rights reserved.</address>
+        </footer>
+    </div>    
+</body>
+</html>
