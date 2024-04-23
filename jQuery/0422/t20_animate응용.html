@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t20_animate 응용</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        'use strict';
+
+        $(function(){
+            let ani1 = Math.random()*5000 + 4000;
+            let ani2 = Math.random()*5000 + 4000;
+            let ani3 = Math.random()*5000 + 4000;
+
+            $('#startBtn').on('click', function() {
+                $('#horse1').animate({
+                    marginLeft: '500px'
+                }, ani1, function(){
+                    // 1번마 들어왔을 때 처리해야할 콜백함수
+                });
+                $('#horse2').animate({
+                    marginLeft: '500px'
+                }, ani2, function(){
+                    // 2번마 들어왔을 때 처리해야할 콜백함수
+                });
+                $('#horse3').animate({
+                    marginLeft: '500px'
+                }, ani3, function(){
+                    // 3번마 들어왔을 때 처리해야할 콜백함수
+                });
+
+                victory();
+            });
+
+
+            // 이 부분을 콜백으로 처리해야함
+            function victory() {
+                let str = '';
+                str = '<h2>결과</h2>';
+                // 숙제는 시간과 등수 나오게 하고 소수 이하는 자르기
+                str += `번개 달린 시간 : ${ani1}<br/>`;
+                str += `영웅 달린 시간 : ${ani2}<br/>`;
+                str += `승리 달린 시간 : ${ani3}<br/>`;
+
+                $('#demo').html(str);
+            }
+
+        });
+        
+    </script>
+    <style>
+        body {
+            margin: 0px;
+        }
+        #horse1 {
+            /* background-color: green; */
+            color: orange;
+        }
+        #horse2 {
+            /* background-color: blueviolet; */
+            color: blue;
+        }
+        #horse3 {
+            /* background-color: brown; */
+            color: green;
+        }
+    </style>
+    </head>
+    <body>
+        <p><br/></p>
+        <div class="container">
+            <h2>달리기 시합</h2>
+            <hr/>
+            <button id="startBtn">출발</button>
+            <hr/>
+            <div id="horse1">번개</div>
+            <div id="horse2">영웅</div>
+            <div id="horse3">승리</div>
+            <hr/>
+            <div id="demo"></div>
+        </div>
+</body>
+</html>
