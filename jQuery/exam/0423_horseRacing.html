@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경마게임</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/df66332deb.js" crossorigin="anonymous"></script>
+    <style>
+        #red, #orange, #yellow, #green, #blue {
+            font-size: 35pt;
+            text-shadow: 0px 0px 10px gray;
+        }
+        .result {
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        'use strict';
+
+        $(function(){
+            let red = Math.random()*5000 + 3000;
+            let orange = Math.random()*5000 + 3000;
+            let yellow = Math.random()*5000 + 3000;
+            let green = Math.random()*5000 + 3000;
+            let blue = Math.random()*5000 + 3000;
+
+            let results = [];
+            let finishCount = 0;
+            let totalHorses = 5;
+            
+            function racingResult(horseColor) {
+                results.push(horseColor);
+                finishCount++;
+                if (finishCount === totalHorses) {
+                    printRanking();
+                }
+            }
+
+            function printRanking() {
+                let resultText = '<div class="row align-items-center">' +
+                        '<div class="col-auto">' +
+                        '<h2><i class="fa-solid fa-flag-checkered"></i> 결과 <i class="fa-solid fa-flag-checkered"></i></h2>' +
+                        '</div>' +
+                        '<div class="col-auto">' +
+                        '<button onclick="location.reload()" class="btn btn-dark">다시하기</button>' +
+                        '</div>' +
+                        '</div><br>';
+                results.forEach((result, index) => {
+                    resultText += `<div class="result mb-3">${index + 1}등 : <span style="text-shadow: 0px 0px 10px gray;">${result}</span></div>`;
+                });
+                $('#demo').html(resultText);
+                console.log(results);
+            }
+
+            $('#startBtn').on('click', function() {
+                $('#red').animate({
+                    marginLeft: '1000px'
+                }, red, function(){
+                    racingResult('<font color="red"><i class="fa-solid fa-horse fa-lg"></i></font>');
+                });
+                $('#orange').animate({
+                    marginLeft: '1000px'
+                }, orange, function(){
+                    racingResult('<font color="orange"><i class="fa-solid fa-horse fa-lg"></i></font>');
+                });
+                $('#yellow').animate({
+                    marginLeft: '1000px'
+                }, yellow, function(){
+                    racingResult('<font color="yellow"><i class="fa-solid fa-horse fa-lg"></i></font>');
+                });
+                $('#green').animate({
+                    marginLeft: '1000px'
+                }, green, function(){
+                    racingResult('<font color="green"><i class="fa-solid fa-horse fa-lg"></i></font>');
+                });
+                $('#blue').animate({
+                    marginLeft: '1000px'
+                }, blue, function(){
+                    racingResult('<font color="blue"><i class="fa-solid fa-horse fa-lg"></i></font>');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <h2><i class="fa-solid fa-flag-checkered"></i> 경마게임 <i class="fa-solid fa-flag-checkered"></i></h2>
+            </div>
+            <div class="col-auto">
+                <button id="startBtn" class="btn btn-dark">게임시작</button>
+            </div>
+        </div>
+        <hr/>
+        <div id="red"><font color="red"><i class="fa-solid fa-horse"></i></font></div>
+        <hr/>
+        <div id="orange"><font color="orange"><i class="fa-solid fa-horse"></i></font></div>
+        <hr/>
+        <div id="yellow"><font color="yellow"><i class="fa-solid fa-horse"></i></font></div>
+        <hr/>
+        <div id="green"><font color="green"><i class="fa-solid fa-horse"></i></font></div>
+        <hr/>
+        <div id="blue"><font color="blue"><i class="fa-solid fa-horse"></i></font></div>
+        <hr/>
+        <div id="demo"></div>
+    </div>
+</body>
+</html>
